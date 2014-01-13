@@ -10,7 +10,7 @@ void draw(){
 }
 
 void keyPressed(){
-  portA.write(".");
+  portA.write("a");
   
 }
 

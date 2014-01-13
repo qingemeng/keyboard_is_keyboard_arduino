@@ -9,13 +9,6 @@ void setup(){
   for(int i = 0; i<10; i++){
     pinMode(ledPins[i],OUTPUT);
   }
-//  pinMode(speakerPin, OUTPUT); //buzzer
-//    for (int i = 0; i < numTones; i++)
-//  {
-//    tone(speakerPin, tones[i]);
-//    delay(500);
-//  }
-//  noTone(speakerPin);
 }
 
 void loop(){
@@ -23,13 +16,7 @@ void loop(){
     int data = Serial.read();
     Serial.println(data);
     randomBlink();
-//    buzz(4, 2500, 500); // buzz the buzzer on pin 4 at 2500Hz for 500 milliseconds
-    for (int i = 0; i < numTones; i++)
-  {
-    tone(speakerPin, tones[i]);
-    delay(500);
-  }
-  noTone(speakerPin);
+    randomBuzz();
   }
 }
 
@@ -39,7 +26,13 @@ void randomBlink(){
   delay(50);
   digitalWrite(ledPins[rand],LOW);
 }
+
 void randomBuzz(){
+  int rand = random(10);
+  tone(speakerPin,tones[rand]);
+  delay(50);
+  noTone(speakerPin);
+}
   
 
 void buzz(int targetPin, long frequency, long length) {
@@ -57,3 +50,4 @@ void buzz(int targetPin, long frequency, long length) {
     delayMicroseconds(delayValue); // wait againf or the calculated delay value
   }
 }
+
