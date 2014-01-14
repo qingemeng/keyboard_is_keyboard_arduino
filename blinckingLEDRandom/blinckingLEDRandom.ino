@@ -89,17 +89,21 @@
 #define NOTE_DS8 4978
 
 
-int ledPins[] = {2,3,4,5,6,7,8,9,10,11};
+int ledPins[] = {
+  2,3,4,5,6,7,8,9,10,11};
 int speakerPin = 12;
 
 int splitter = 7;
 int counter = 0;
 int numTones = 10;
 //int tones[] = {NC,ND,NE,NF,NG,NA,NB,NC1,ND1,NE1};
-int tones[] = {NOTE_C5,NOTE_D5,NOTE_E5,NOTE_F5,NOTE_G5,NOTE_A5,NOTE_B5,NOTE_C6,NOTE_D6,NOTE_E6};
-int tones2[] = {NOTE_A4,NOTE_B4,NOTE_C5,NOTE_D5,NOTE_E5,NOTE_F5,NOTE_G5,NOTE_A5,NOTE_B5,NOTE_C6};
+int tones[] = {
+  NOTE_C5,NOTE_D5,NOTE_E5,NOTE_F5,NOTE_G5,NOTE_A5,NOTE_B5,NOTE_C6,NOTE_D6,NOTE_E6};
+int tones2[] = {
+  NOTE_A4,NOTE_B4,NOTE_C5,NOTE_D5,NOTE_E5,NOTE_F5,NOTE_G5,NOTE_A5,NOTE_B5,NOTE_C6};
 
-int song_ts[]={NOTE_C5,NOTE_C5,NOTE_G5,NOTE_G5,NOTE_A5,NOTE_A5,NOTE_G5};//NOTE_FS5,NOTE_FS5,NOTE_E5,NOTE_E5,NOTE_D5,NOTE_D5,NOTE_C5};
+int song_ts[]={
+  NOTE_C5,NOTE_C5,NOTE_G5,NOTE_G5,NOTE_A5,NOTE_A5,NOTE_G5};//NOTE_FS5,NOTE_FS5,NOTE_E5,NOTE_E5,NOTE_D5,NOTE_D5,NOTE_C5};
 int num_ts = 7;
 
 void setup(){
@@ -107,31 +111,18 @@ void setup(){
   for(int i = 0; i<10; i++){
     pinMode(ledPins[i],OUTPUT);
   }
-//  for (int i = 0; i < num_ts; i++)
-//  {
-//    tone(speakerPin, song_ts[i]);
-////tone(speakerPin, NOTE_C1);
-//    delay(500);
-//    noTone(speakerPin);
-//    delay(500);
-//  }
-//  noTone(speakerPin);
 }
 
 void loop(){
-  
+
   if(Serial.available()>0){
     int data = Serial.read();
-//    Serial.println(data);
-//    randomBlink();
-//    randomBuzz();
-//    char in = Serial.read();
     tBuzz(data);
     tBlink(data);
-        counter++;
-if(counter!=0&&counter%splitter==0){
-  delay(500);
-}
+    counter++;
+    if(counter!=0&&counter%splitter==0){
+      delay(500);
+    }
   }
 }
 
@@ -144,8 +135,7 @@ void randomBlink(){
 
 void randomBuzz(){
   int rand = random(10);
-//  tone(speakerPin,tones[rand]);
-tone(speakerPin,tones[rand]);
+  tone(speakerPin,tones[rand]);
   delay(50);
   noTone(speakerPin);
 }
@@ -153,11 +143,12 @@ tone(speakerPin,tones[rand]);
 void tBlink(int in){
   if(in ==0){
     counter =0;
-  }else{
-  digitalWrite(ledPins[in],HIGH);
-  delay(50);
-  digitalWrite(ledPins[in],LOW);
-  delay(200);
+  }
+  else{
+    digitalWrite(ledPins[in],HIGH);
+    delay(50);
+    digitalWrite(ledPins[in],LOW);
+    delay(200);
   }
 }
 
@@ -165,8 +156,9 @@ void tBuzz(int in){
   tone(speakerPin, tones[in]);
   delay(50);
   noTone(speakerPin);
-    delay(200);
+  delay(200);
 
 }
-  
+
+
 
